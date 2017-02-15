@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Frankusky/automatic_branch_creator/issues"
   },
-  "homepage": "https://github.com/Frankusky/automatic_branch_creator#readme"
+  "homepage": "https://github.com/Frankusky/automatic_branch_creator#readme",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-git": "^2.0.0"
+  }
 }
