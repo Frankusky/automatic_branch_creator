@@ -34,14 +34,17 @@ function checkBranchName() {
 }
 
 function fetchAndPull() {
-	//	git.fetch('', '', {args: '--all', quiet: true}, function (err) {
-	//		if (err) throw err;
-	//		console.log("test");
-	git.pull("origin","",{quiet:true}, function (error) {
-			console.log("test");
-//			makeMagicHereToGetTicketName();
+	git.fetch('', '', {
+		args: '--all',
+		quiet: true
+	}, function (err) {
+		if (err) throw err;
+		git.pull("origin", "", {
+			quiet: true
+		}, function (error) {
+			makeMagicHereToGetTicketName();
 		})
-		//	});
+	});
 }
 gulp.task("gen-branch", fetchAndPull);
 
