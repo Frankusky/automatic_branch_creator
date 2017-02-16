@@ -1,14 +1,34 @@
 var gulp = require("gulp");
 var git = require("gulp-git");
 
-function makeMagicHereToGetTicketName() {
-	var newBranchName = "dev";
+function checkoutToNewBranch(newBranchName) {
 	git.checkout(newBranchName, {
 		args: "-b",
 		quiet: true
 	}, function (err) {
 		if (err) throw err
 	});
+}
+
+function makeMagicHereToGetTicketName() {
+	var request = require('request'),
+		username = "awtesting@armyspy.com",
+		password = "awt3sting",
+		url = "http://awtesting.atlassian.net/rest/api/2/search?jql=issue=ODAP-1",
+		auth = "Basic " + new Buffer(username + ":" + password).toString("base64");
+	request({
+			url: url,
+			headers: {
+				"Authorization": auth
+			}
+		},
+		function (error, response, body) {
+			if (error) throw error;
+			var title = JSON.parse(body).issues[0].fields.summary;
+			var project = JSON.parse(body).issues[0].key;
+			checkoutToNewBranch(project + title);
+		}
+	);
 }
 
 function checkoutToMaster() {
