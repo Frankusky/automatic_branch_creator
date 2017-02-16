@@ -66,7 +66,7 @@ function fetchAndPull() {
 		})
 	});
 }
-gulp.task("gen-branch", fetchAndPull);
+gulp.task("gen-branch", checkBranchName);
 
 gulp.task("default", function () {
 	console.log("Default task");
